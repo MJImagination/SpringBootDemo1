@@ -22,4 +22,8 @@ public class UserServiceImpl implements IUserService {
         }catch (Exception e){}
         return user;
     }
+
+    public void hello(){
+        System.out.println("hello");
+    }
 }
