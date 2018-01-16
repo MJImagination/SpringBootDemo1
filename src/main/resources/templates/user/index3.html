@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="cn" xml:th="http://www.thymeleaf.org" xmlns:link="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.js"></script>
+
+</head>
+<body onload="disconnect()">
+
+<div>
+    <button id="connect" onclick="connect()">连接</button>
+    <button id="disconnect" disabled="disabled" onclick="disconnect()">断开连接</button>
+
+</div>
+
+<div id="conversationDiv">
+    <label>输入你的名字</label>
+    <input type="text" id="name"/>
+    <button id="sendName" onclick="sendName()">发送</button>
+    <div id="myresponse">返回内容：</div>
+
+</div>
+
+</body>
+<script>
+    var stompClient = null;
+    function  setConnected(connected) {
+        document.getElementById("connect").disabled = connected;
+        document.getElementById('disconnect').disabled = !connected;
+        document.getElementById('conversationDiv').style.visibility = connected ? 'visible' : 'hidden';
+        $('#response').html();
+    }
+
+    function  connect() {
+        // var socket = new SockJS('http://localhost:10006/tdbank-portal-websocket');
+        var socket = new SockJS('/tdbank-portal-websocket');/*第一种写法*/
+        stompClient = Stomp.over(socket);
+        stompClient.connect({},function (frame) {
+            setConnected(true);
+            console.log('connected'+ frame);
+            stompClient.subscribe('/topic/send',function (response) {
+                showResponse(JSON.parse(response.body));
+            });
+            stompClient.subscribe('/topic/callback', function (r) {
+                console.log(r.body);
+                showResponse(r.body);
+            });
+        });
+    }
+
+    function disconnect() {
+        if(stompClient!=null){
+            stompClient.disconnect();
+        }
+        setConnected(false);
+        console.log('disconnected')
+    }
+
+
+    function  sendName() {
+        var name = $('#name').val();
+        stompClient.send('/app/send',{},JSON.stringify({'message':name}));
+    }
+    function  showResponse(message) {
+        $('#myresponse').after(message);
+    }
+
+</script>
+</html>

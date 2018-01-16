@@ -21,7 +21,9 @@
 
             //连接
             $scope.connect = function () {
-                var socket = new SockJS('/tdbank-portal-websocket');
+                // var socket = new SockJS('http://localhost:10006/tdbank-portal-websocket');
+                // var socket = new SockJS('http://localhost:8080/tdbank-portal-websocket');/*第二种写法*/
+                var socket = new SockJS('/tdbank-portal-websocket');/*第一种写法*/
                 stompClient = Stomp.over(socket);
                 stompClient.connect({}, function (frame) {
                     // 注册发送消息
@@ -30,9 +32,9 @@
                         $scope.data.connected = true;
                         $scope.$apply();
                     });
-                    // 注册推送时间回调
+                    // 注册推送回调
                     stompClient.subscribe('/topic/callback', function (r) {
-                        $scope.data.time = '当前服务器时间：' + r.body;
+                        $scope.data.time = '服务器返回数据：' + r.body;
                         $scope.data.connected = true;
                         $scope.$apply();
                     });
