@@ -36,8 +36,8 @@
     }
 
     function  connect() {
-        // var socket = new SockJS('http://localhost:10006/tdbank-portal-websocket');
-        var socket = new SockJS('/tdbank-portal-websocket');/*第一种写法*/
+        var socket = new SockJS('http://localhost:10006/tdbank-portal-websocket');
+        // var socket = new SockJS('/tdbank-portal-websocket');/*第一种写法*/
         stompClient = Stomp.over(socket);
         stompClient.connect({},function (frame) {
             setConnected(true);

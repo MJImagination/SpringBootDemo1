@@ -18,13 +18,18 @@ import java.util.Date;
 @Controller
 @EnableScheduling
 @RequestMapping(value = "/socket")
-public class SocketServe {
+public class SocketServeController {
 
     @Autowired
     private SimpMessagingTemplate messagingTemplate;
 
-    @GetMapping("/index")
+    @GetMapping("/index2")
     public String index() {
+        return "user/index2";
+    }
+
+    @GetMapping("/index3")
+    public String index3() {
         return "user/index3";
     }
 
