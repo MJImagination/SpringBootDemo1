@@ -30,7 +30,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/tdbank-portal-websocket").withSockJS();
+        registry.addEndpoint("/tdbank-portal-websocket").setAllowedOrigins("*").withSockJS();
     }
 
     @Override
