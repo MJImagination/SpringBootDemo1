@@ -64,6 +64,30 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
+
+        <!--ActiveMQ 外置activityMQ-->
+        <!--参考博客：http://blog.csdn.net/zl18310999566/article/details/54313464-->
+        <!--https://juejin.im/post/5a708655f265da3e5b3318b3?utm_source=gold_browser_extension-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-client</artifactId>
+        </dependency>
+
+        <!--spring.activemq.pool.enabled=true 为true是需要这个jar包-->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-pool</artifactId>
+            <version>5.15.0</version>
+        </dependency>
+        <!--内置activityMQ-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-activemq</artifactId>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
