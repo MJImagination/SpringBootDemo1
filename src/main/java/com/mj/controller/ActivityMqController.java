@@ -31,8 +31,9 @@ public class ActivityMqController {
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 2; i++) {
             logProducer.send(msg + " = " + i);
+            logProducer.send2(msg + " = " + i);
         }
         stopWatch.stop();
         System.out.println("发送消息耗时: " + stopWatch.getTotalTimeMillis() + "ms");
