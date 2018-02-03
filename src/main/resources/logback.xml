@@ -6,7 +6,7 @@
 	<property name="CONSOLE_LOG_PATTERN" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"></property>
 	<property name="FILE_LOG_PATTERN" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"></property>
 	
-	<property name="LOG_PATH" value="${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}" />
+	<property name="LOG_PATH" value="\logs" />
 
 	<!-- 日志输出到控制台 -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
