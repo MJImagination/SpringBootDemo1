@@ -1,7 +1,7 @@
 package com.mj.activityMQ;
 
 /**
- * @Description:
+ * @Description: 队列名
  * @Author: MJ
  * @Date: Created in 2018/1/31
  */
